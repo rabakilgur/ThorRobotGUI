@@ -1,0 +1,19 @@
+[click],
+.d-btn {
+    position: relative;
+    border: 0;
+    outline: 0;
+    background: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+[click] .clickInnerCircle,
+.d-btn .clickInnerCircle {
+    background: rgba(0, 0, 0, 0.075);
+    pointer-events: none;
+    border-radius: 100%;
+}

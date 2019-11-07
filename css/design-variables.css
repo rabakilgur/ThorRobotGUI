@@ -1,0 +1,18 @@
+:root {
+    --primary: #0088FF;
+    --primary-text: #FFFFFF;
+    --secondary: #DDDDDD;
+    --secondary-text: #333333;
+    --secondary_dark: #444;
+    --secondary_dark-text: #FAFAFA;
+    --success: #00BA47; /* OLD: #40BD00 */
+    --success-text: #FFFFFF;
+    --warning: #F3BA41; /* OLD: #FAC536 */
+    --warning-text: #FFFFFF;
+    --danger: #EF4239; /* OLD: #D62F1F */
+    --danger-text: #FFFFFF;
+    --gray_dark: #1E1E1E;
+    --gray: #424242;
+    --gray_light: #DDDDDD;
+    --gray_lighter: #EEEEEE;
+}

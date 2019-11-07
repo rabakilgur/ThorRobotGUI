@@ -1,0 +1,349 @@
+/*
+* Author: Robin Garbe
+* Licence: MIT
+*
+* Description: This is the general CSS file, containing CSS code that schould be
+* somewhat similar/unchanged between projects.
+* This file should get smaller and smaller when design.css gets better/bigger.
+*/
+
+/* -------------------------------------------------------------------------- */
+/* ------------------------------ General CSS: ------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+*,
+*:after,
+*::before {
+        -webkit-overflow-scrolling: touch;
+    /*overflow-scrolling: touch;*/
+        -webkit-font-smoothing: antialiased;
+    /*font-smoothing: antialiased;*/
+    	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+    user-select: none;
+    outline: none;
+}
+
+html,
+body {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+.voces {
+    font-family: "Voces", Verdana, "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* ------------------------------- Popup CSS: ------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+#popup-box {
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s;
+}
+#popup-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 300px;
+    max-width: 90%;
+    background: #323030;
+    border-radius: 0.25rem;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(1.15);
+    transition: transform 0.2s ease-out, opacity 0.2s;
+}
+.popup > h3 {
+    margin-bottom: 8px;
+}
+.popup .btn + .btn {
+    margin-left: 6px;
+}
+.popup-buttons {
+    margin-top: 15px;
+    text-align: right;
+}
+body.show_background > :not(#titlebar):not(#popup-box):not(#error-layer),
+body.show_addDevice > :not(#titlebar):not(#popup-box):not(#error-layer),
+body.show_deviceSettings > :not(#titlebar):not(#popup-box):not(#error-layer),
+body.show_options > :not(#titlebar):not(#popup-box):not(#error-layer),
+body.show_import > :not(#titlebar):not(#popup-box):not(#error-layer)  {
+    filter: blur(5px);
+}
+body.show_background > #popup-box,
+body.show_addDevice > #popup-box,
+body.show_deviceSettings > #popup-box,
+body.show_options > #popup-box,
+body.show_import > #popup-box {
+    opacity: 1;
+    pointer-events: auto;
+}
+body.show_addDevice > #popup-box > #popup-addDevice,
+body.show_deviceSettings > #popup-box > #popup-deviceSettings,
+body.show_options > #popup-box > #popup-options,
+body.show_import > #popup-box > #popup-importSettings {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+}
+body.show_options::-webkit-scrollbar,
+body.show_options::-webkit-scrollbar-corner,
+body.show_options::-webkit-scrollbar-track,
+body.show_options::-webkit-scrollbar-thumb {
+    background: #242222 !important;
+    border: none;
+}
+#popup-options {
+    min-width: 428px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* ------------------------------ Titlebar CSS: ----------------------------- */
+/* -------------------------------------------------------------------------- */
+
+#titlebar {
+    position: fixed;
+    z-index: 900000;
+    display: block;
+    height: 32px;
+    width: 100%;
+    background: transparent;
+    color: #FFF;
+    padding: 4px;
+}
+#titlebar-drag-region {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: auto 138px;
+    -webkit-app-region: drag;
+}
+#titlebar-window-title {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 12px;
+    margin-left: 8px;
+    overflow-x: hidden;
+}
+#titlebar-window-title span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+}
+#titlebar-window-controls {
+    position: absolute;
+    display: grid;
+    top: 0;
+    right: 0;
+    height: 34px;
+    grid-template-columns: 66px 46px 46px 46px;
+    font-family: "Segoe MDL2 Assets";
+    font-size: 10px;
+    -webkit-app-region: no-drag;
+}
+.titlebar-button {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: #1c1a1a;
+    grid-row: 1 / span 1;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    user-select: none;
+    transition: background 0.15s ease-out;
+}
+.titlebar-button:hover {
+    background: rgba(255,255,255,0.2);
+    transition: background 0.1s ease-out;
+}
+.titlebar-button svg {
+    width: 40%;
+}
+.titlebar-button svg path {
+    fill: #FFFFFF;
+}
+#titlebar-option-button {
+    grid-column: 1;
+    width: 46px;
+    border-radius: 0 0 8px 8px;
+}
+#titlebar-option-button svg {
+    transition: transform 0.15s ease-out;
+}
+#titlebar-option-button:hover svg,
+body.show_options #titlebar-option-button svg {
+    transform: rotate(40deg);
+}
+#titlebar-min-button {
+    grid-column: 2;
+    border-radius: 0 0 0 8px;
+}
+#titlebar-max-button,
+#titlebar-restore-button {
+    grid-column: 3;
+}
+#titlebar-restore-button {
+    display: none;
+}
+#titlebar-close-button {
+    grid-column: 4;
+}
+#titlebar-close-button:hover {
+    background: #E81123;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* ----------------------------- Preloader CSS: ----------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.preloader {
+	z-index: 999999;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: #242222;
+	overflow: hidden;
+	animation: preloader-fadeOut linear 1;
+	animation-fill-mode: forwards;
+	animation-duration: 3s;
+}
+.preloader-cogs {
+	position: absolute;
+	color: #888;
+	top: 50%;
+	left: 50%;
+	animation: preloader-zoom cubic-bezier(0.23,1,0.32,1) 1;
+	animation-fill-mode: forwards;
+	animation-duration: 3s;
+}
+.preloader-cogs-one,
+.preloader-cogs-big,
+.preloader-cogs-three {
+	position: absolute;
+}
+.preloader-cogs-one {
+	font-size: 135px;
+	top: 50px;
+	left: -160px;
+	color: #555;
+}
+.preloader-cogs-big {
+	font-size: 300px;
+	top: -200px;
+	left: -145px;
+	color: #bbb;
+}
+.preloader-cogs-three {
+	font-size: 180px;
+	top: 30px;
+	right: -180px;
+}
+.preloader-cogs-one {
+	animation: preloader-rotate2 3.0s linear infinite;
+}
+.preloader-cogs-big {
+	animation: preloader-rotate 4.6s linear infinite;
+}
+.preloader-cogs-three {
+	animation: preloader-rotate2 3.4s linear infinite;
+}
+.content {
+    transform: scale(0);
+	animation: preloader-fadeIn cubic-bezier(0.23,1,0.32,1) 1;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	animation-delay: 1.8s;
+}
+.content.no-preloader {
+    transform: scale(1);
+    animation: none;
+}
+@keyframes preloader-rotate {
+	from { transform: rotate(0); }
+	to   { transform: rotate(360deg); }
+}
+@keyframes preloader-rotate2 {
+	from { transform: rotate(0); }
+	to   { transform: rotate(-360deg); }
+}
+@keyframes preloader-zoom {
+	0%   { transform: scale(0); opacity: 0; }
+	40%  { transform: scale(1); opacity: 1; }
+	60%  { transform: scale(1); opacity: 1; }
+	100% { transform: scale(10); opacity: 0; }
+}
+@keyframes preloader-fadeOut {
+	0%   { opacity: 1; pointer-events: auto; display: block; }
+	60%  { opacity: 1; pointer-events: auto; display: block; }
+	75%  { opacity: 0; pointer-events: none; display: block; }
+	99%  { opacity: 0; pointer-events: none; display: block; }
+	100% { opacity: 0; pointer-events: none; display: none; }
+}
+@keyframes preloader-fadeIn {
+	from { transform: scale(0.6); opacity: 0; }
+	to   { transform: scale(1); opacity: 1; }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* --------------------------------- Loader: -------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    animation: loader-reveal 2s 1 ease-out;
+}
+@keyframes loader-reveal {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.5) }
+    80%  { opacity: 0; transform: translate(-50%, -50%) scale(0.5) }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.loader::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 6px solid #888;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 100%;
+    animation: loader-spin 2s infinite linear;
+}
+@keyframes loader-spin {
+    from { transform: rotate(0deg) }
+    to   { transform: rotate(360deg) }
+}
+

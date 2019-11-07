@@ -1,0 +1,26 @@
+{
+    "id": null,
+    "devmode": false,
+    "appmode": 0,
+    "startSender": true,
+    "opc": {
+        "server": {
+            "name": "New Hub Server",
+            "address": "0.0.0.0",
+            "port": "4334",
+            "endpoint": "OPC-UA",
+            "devices": []
+        },
+        "client": {
+            "dbserver" : "https://robin-garbe.de/p/uni/bp/",
+            "connection": {
+                "fixed": false,
+                "type": 1,
+                "local": "",
+                "internet": "",
+                "port": "4334",
+                "endpoint": "OPC-UA"
+            }
+        }
+    }
+}

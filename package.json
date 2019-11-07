@@ -1,0 +1,54 @@
+{
+    "name": "thor-control",
+    "productName": "Thor Control GUI",
+    "version": "1.0.0",
+    "description": "This is a control panel designed to be used with the Open Source robot 'Thor'",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "pack": "build --dir",
+        "dist": "build",
+        "postinstall": "electron-builder install-app-deps"
+    },
+    "build": {
+        "appId": "thor.control",
+        "directories": {
+            "buildResources": "resources",
+            "output": "_build"
+        },
+        "win": {
+            "target": [
+                "portable"
+            ],
+            "icon": "build/icon.ico"
+        },
+        "nsis": {
+            "oneClick": false,
+            "perMachine": false,
+            "allowToChangeInstallationDirectory": true
+        }
+    },
+    "keywords": [
+        "Thor",
+        "Robot",
+        "Control Panel"
+    ],
+    "repository": "none",
+    "author": "Robin Garbe",
+    "license": "MIT",
+    "dependencies": {
+        "appdata-path": "^1.0.0",
+        "axios": "^0.19.0",
+        "child_process": "^1.0.2",
+        "custom-event": "^1.0.1",
+        "electron-reload": "^1.4.0",
+        "n-readlines": "^1.0.0",
+        "serialport": "^7.1.5"
+    },
+    "devDependencies": {
+        "electron": "^4.0.5",
+        "electron-builder": "^20.44.1",
+        "electron-rebuild": "^1.8.6"
+    }
+}

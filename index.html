@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>_</title>
+	
+    <script> const remote = require('electron').remote; </script>
+    <script> if (typeof module === 'object') { window.module = module; module = undefined; }; </script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/rangeslider.min.js"></script>
+    <script src="js/design.js"></script>
+    <script src="js/fontawsome-5.8.1.js"></script>
+    <script src="js/ResizeSensor.js"></script>
+    <script src="js/ElementQuery.js"></script>
+    <script src="js/click.js"></script>
+    <script src="js/Chart-2.8.0.js"></script>
+    <script src="js/roundedBarCharts.js"></script>
+    <script src="js/chartjs-plugin-datalabels.js"></script>
+    <script src="js/myCharts.js"></script>
+    <!-- <script src="js/popper.min.js"></script> -->
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <!-- <script src="js/vue.js"></script> -->
+    <!-- <script src="js/vuex.js"></script> -->
+    <script src="js/activity_indicator.js"></script>
+	<script src="js/index.js"></script>
+	
+    <link rel="stylesheet" type="text/css" href="css/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/click.css" />
+    <link rel="stylesheet" type="text/css" href="css/design-variables.css" />
+	<link rel="stylesheet" type="text/css" href="css/design.css" />
+    <link rel="stylesheet" type="text/css" href="css/design-custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/tooltips.css" />
+    <!-- <link rel="stylesheet" href="css/dark_bootstrap.css"> -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="css/font_Voces.css"> -->
+    <link rel="stylesheet" href="css/general_style.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-dark">
+
+
+<div class="preloader">
+	<div class="preloader-cogs">
+		<div class="fa fa-cog preloader-cogs-one"></div>
+		<div class="fa fa-cog preloader-cogs-three"></div>
+		<div class="fa fa-cog preloader-cogs-big"></div>
+	</div>
+</div>
+
+<div class="app">
+			
+	<header id="titlebar">
+		<div id="titlebar-drag-region">
+			<div id="titlebar-icon">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+					<path fill="#242222" stroke="#FFFFFF" stroke-width="25" stroke-miterlimit="10" d="M452.14,440.5H59.86 C40.61,440.5,25,424.89,25,405.64V106.36C25,87.11,40.61,71.5,59.86,71.5h392.27c19.25,0,34.86,15.61,34.86,34.86v299.27 C487,424.89,471.39,440.5,452.14,440.5z"/>
+					<path fill="#FFFFFF" d="M69,406L69,406c-4.14,0-7.5-3.36-7.5-7.5v-15c0-4.14,3.36-7.5,7.5-7.5h0c4.14,0,7.5,3.36,7.5,7.5v15 C76.5,402.64,73.14,406,69,406z"/>
+					<path fill="#CCCCCC" d="M106.5,402.25L106.5,402.25c-4.14,0-7.5-3.36-7.5-7.5v-7.5c0-4.14,3.36-7.5,7.5-7.5h0 c4.14,0,7.5,3.36,7.5,7.5v7.5C114,398.89,110.64,402.25,106.5,402.25z"/>
+					<path fill="#FFFFFF" d="M144,406L144,406c-4.14,0-7.5-3.36-7.5-7.5v-15c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v15 C151.5,402.64,148.14,406,144,406z"/>
+					<path fill="#CCCCCC" d="M181.5,402.25L181.5,402.25c-4.14,0-7.5-3.36-7.5-7.5v-7.5c0-4.14,3.36-7.5,7.5-7.5l0,0 c4.14,0,7.5,3.36,7.5,7.5v7.5C189,398.89,185.64,402.25,181.5,402.25z"/>
+					<path fill="#FFFFFF" d="M219,406L219,406c-4.14,0-7.5-3.36-7.5-7.5v-15c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v15 C226.5,402.64,223.14,406,219,406z"/>
+					<path fill="#CCCCCC" d="M256.5,402.25L256.5,402.25c-4.14,0-7.5-3.36-7.5-7.5v-7.5c0-4.14,3.36-7.5,7.5-7.5l0,0 c4.14,0,7.5,3.36,7.5,7.5v7.5C264,398.89,260.64,402.25,256.5,402.25z"/>
+					<path fill="#FFFFFF" d="M294,406L294,406c-4.14,0-7.5-3.36-7.5-7.5v-15c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v15 C301.5,402.64,298.14,406,294,406z"/>
+					<path fill="#CCCCCC" d="M331.5,402.25L331.5,402.25c-4.14,0-7.5-3.36-7.5-7.5v-7.5c0-4.14,3.36-7.5,7.5-7.5l0,0 c4.14,0,7.5,3.36,7.5,7.5v7.5C339,398.89,335.64,402.25,331.5,402.25z"/>
+					<path fill="#FFFFFF" d="M369,406L369,406c-4.14,0-7.5-3.36-7.5-7.5v-15c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v15 C376.5,402.64,373.14,406,369,406z"/>
+					<path fill="#CCCCCC" d="M406.5,402.25L406.5,402.25c-4.14,0-7.5-3.36-7.5-7.5v-7.5c0-4.14,3.36-7.5,7.5-7.5l0,0 c4.14,0,7.5,3.36,7.5,7.5v7.5C414,398.89,410.64,402.25,406.5,402.25z"/>
+					<path fill="#FFFFFF" d="M444,406L444,406c-4.14,0-7.5-3.36-7.5-7.5v-15c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v15 C451.5,402.64,448.14,406,444,406z"/>
+					<path fill="#AAAAAA" d="M279,227L279,227c-4.14,0-7.5-3.36-7.5-7.5v-91c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v91 C286.5,223.64,283.14,227,279,227z"/>
+					<path fill="#AAAAAA" d="M354,166L354,166c-4.14,0-7.5-3.36-7.5-7.5v-30c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v30 C361.5,162.64,358.14,166,354,166z"/>
+					<path fill="#AAAAAA" d="M429,241L429,241c-4.14,0-7.5-3.36-7.5-7.5v-105c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v105 C436.5,237.64,433.14,241,429,241z"/>
+					<path fill="#FFFFFF" d="M279,347L279,347c-4.14,0-7.5-3.36-7.5-7.5v-43c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v43 C286.5,343.64,283.14,347,279,347z"/>
+					<path fill="#FFFFFF" d="M354,347L354,347c-4.14,0-7.5-3.36-7.5-7.5v-103c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v103 C361.5,343.64,358.14,347,354,347z"/>
+					<path fill="#FFFFFF" d="M429,347L429,347c-4.14,0-7.5-3.36-7.5-7.5v-28c0-4.14,3.36-7.5,7.5-7.5l0,0c4.14,0,7.5,3.36,7.5,7.5v28 C436.5,343.64,433.14,347,429,347z"/>
+					<path fill="#51A84C" stroke="#FFFFFF" stroke-width="16" stroke-miterlimit="10" d="M280,293h-2c-11.32,0-20.5-9.18-20.5-20.5v-2 c0-11.32,9.18-20.5,20.5-20.5h2c11.32,0,20.5,9.18,20.5,20.5v2C300.5,283.82,291.32,293,280,293z"/>
+					<path fill="#E6AA40" stroke="#FFFFFF" stroke-width="16" stroke-miterlimit="10" d="M355,232.5h-2c-11.32,0-20.5-9.18-20.5-20.5 v-2c0-11.32,9.18-20.5,20.5-20.5h2c11.32,0,20.5,9.18,20.5,20.5v2C375.5,223.32,366.32,232.5,355,232.5z"/>
+					<path fill="#C04D4A" stroke="#FFFFFF" stroke-width="16" stroke-miterlimit="10" d="M430,307.5h-2c-11.32,0-20.5-9.18-20.5-20.5 v-2c0-11.32,9.18-20.5,20.5-20.5h2c11.32,0,20.5,9.18,20.5,20.5v2C450.5,298.32,441.32,307.5,430,307.5z"/>
+					<path fill="#464444" d="M144.5,127.5L144.5,127.5c-41.42,0-75,33.58-75,75v0c0,8.28,6.72,15,15,15h120c8.28,0,15-6.72,15-15v0 C219.5,161.08,185.92,127.5,144.5,127.5z"/>
+					<path fill="#AAAAAA" d="M136.99,219.84L136.99,219.84c-3.5-2.22-4.54-6.85-2.32-10.35l25.83-40.75c2.22-3.5,6.85-4.54,10.35-2.32 l0,0c3.5,2.22,4.54,6.85,2.32,10.35l-25.83,40.75C145.12,221.02,140.48,222.06,136.99,219.84z"/>
+					<path fill="none" stroke="#FFFFFF" stroke-width="15" stroke-miterlimit="10" d="M144.5,127.5L144.5,127.5 c-41.42,0-75,33.58-75,75v0c0,8.28,6.72,15,15,15h120c8.28,0,15-6.72,15-15v0C219.5,161.08,185.92,127.5,144.5,127.5z"/>
+					<path fill="#FFFFFF" d="M111.36,250.53c-1.9-1.87-4.31-2.81-7.17-2.81H76.6c-2.87,0-5.28,0.95-7.16,2.83 c-1.88,1.88-2.83,4.29-2.83,7.16v84.59c0,2.88,0.95,5.28,2.83,7.16c1.88,1.88,4.29,2.83,7.16,2.83h27.59 c2.86,0,5.28-0.95,7.17-2.81c1.91-1.88,2.88-4.29,2.88-7.18V257.7C114.24,254.82,113.27,252.41,111.36,250.53z M99.49,261.46 v77.08H81.36v-77.08H99.49z"/>
+					<path fill="#FFFFFF" d="M166.16,250.52c-1.9-1.87-4.31-2.81-7.17-2.81h-35v97.2c0,4.07,3.31,7.38,7.38,7.38 c4.07,0,7.38-3.31,7.38-7.38v-31.74h20.24c2.87,0,5.29-0.96,7.19-2.86c1.9-1.9,2.86-4.32,2.86-7.19V257.7 C169.04,254.86,168.05,252.38,166.16,250.52z M154.29,261.46v37.9h-15.54v-37.9H154.29z"/>
+					<path fill="#FFFFFF" d="M214.98,283.63c4.09,0,7.41-3.32,7.41-7.41V257.7c0-2.85-1.01-5.34-2.93-7.19 c-1.92-1.86-4.34-2.8-7.19-2.8h-25.38c-2.87,0-5.28,0.95-7.16,2.83c-1.88,1.88-2.83,4.29-2.83,7.16v84.59 c0,2.88,0.95,5.28,2.83,7.16c1.88,1.88,4.29,2.83,7.16,2.83h25.38c2.85,0,5.27-0.94,7.19-2.8c1.92-1.86,2.93-4.34,2.93-7.19v-20.6 c0-4.08-3.32-7.41-7.41-7.41s-7.41,3.32-7.41,7.41v16.84h-15.92v-77.08h15.92v14.76C207.57,280.31,210.9,283.63,214.98,283.63z"/>
+				</svg>
+			</div>
+			<div id="titlebar-title">
+				<span class="app-title"></span>
+				<span class="app-titleinfo">
+					<span class="app-version"></span>
+					<span class="app-status"></span>
+				</span>
+			</div>
+			<div id="titlebar-window-controls">
+				<div class="titlebar-button" id="titlebar-min-button">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512">
+						<path d="M416,288H96c-17.67,0-32-14.33-32-32v0c0-17.67,14.33-32,32-32h320c17.67,0,32,14.33,32,32v0C448,273.67,433.67,288,416,288 z"/>
+					</svg>
+				</div>
+				<div class="titlebar-button" id="titlebar-max-button">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512">
+						<path d="M405.25,63.95h-298.6c-23.5,0-42.7,19.2-42.7,42.7v298.7c0,23.5,19.2,42.7,42.7,42.7h298.7c23.5,0,42.7-19.2,42.7-42.7 v-298.7C447.95,83.15,428.75,63.95,405.25,63.95z M384,384H128V128h256V384z"/>
+					</svg>
+				</div>
+				<div class="titlebar-button" id="titlebar-restore-button">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512">
+						<path d="M414.62,63.95H181.4c-18.35,0-33.35,15-33.35,33.35v50.75H97.3c-18.35,0-33.35,15-33.35,33.35v233.3 c0,18.35,15,33.35,33.35,33.35h233.3c18.35,0,33.35-15,33.35-33.35v-50.75h50.75c18.35,0,33.35-15,33.35-33.35V97.3 C447.97,78.95,432.98,63.95,414.62,63.95z M299.95,384.05h-172v-172h172V384.05z M384.05,299.95h-20.1V181.4 c-0.08-18.35-15.07-33.35-33.43-33.35H212.05v-20.1h172V299.95z"/>
+					</svg>
+				</div>
+				<div class="titlebar-button" id="titlebar-close-button">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512">
+						<path d="M435.15,389.89L301.12,255.87l133.89-133.89c12.5-12.5,12.5-32.76,0-45.25l0,0c-12.5-12.5-32.76-12.5-45.25,0L255.87,210.61 L122.11,76.85c-12.5-12.5-32.76-12.5-45.25,0l0,0c-12.5,12.5-12.5,32.76,0,45.25l133.76,133.76L76.72,389.76 c-12.5,12.5-12.5,32.76,0,45.25l0,0c12.5,12.5,32.76,12.5,45.25,0l133.89-133.89l134.02,134.02c12.5,12.5,32.76,12.5,45.25,0l0,0 C447.64,422.65,447.64,402.39,435.15,389.89z"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="toppanel"><!-- unused for now --></div>
+	<menu class="sidepanel">
+		<menuitem data-menu="ControlPanel" class="menu-active">
+			<i class="fas fa-digital-tachograph"></i>
+			<div class="menu-tooltip" tooltip="Control Panel" flow="right"></div>
+		</menuitem>
+		<menuitem data-menu="Console">
+			<i class="fas fa-terminal"></i>
+			<div class="menu-tooltip" tooltip="Console" flow="right"></div>
+		</menuitem>
+		<menuitem data-menu="Processes">
+			<i class="fas fa-project-diagram"></i>
+			<div class="menu-tooltip" tooltip="Processes" flow="right"></div>
+		</menuitem>
+		<menuitem data-menu="Analytics">
+			<i class="fas fa-chart-bar"></i>
+			<div class="menu-tooltip" tooltip="Analytics" flow="right"></div>
+		</menuitem>
+		<menuitem data-menu="Settings">
+			<i class="fas fa-cog"></i>
+			<div class="menu-tooltip" tooltip="Settings" flow="right"></div>
+		</menuitem>
+	</menu>
+	
+	<div class="mainbox">
+		<div class="main main-ControlPanel main-active">
+			<div class="main-column1">
+				<div class="ctrlWidget widgetConnect">
+					<h2>Connection</h2>
+					<div>
+						<div class="connect-box1">
+							<div>
+								<span>Serial Port</span>
+								<label class="slct-label" for="slct-COM" click>
+									<select class="slct" id="slct-COM" required="required">
+										<option value="" disabled="disabled" selected="selected">Select Serial Port</option>
+										<option>COM1</option>
+										<option>COM2</option>
+										<option>COM3</option>
+										<option>COM4</option>
+									</select>
+									<span class="slct-arrow"></span>
+								</label>
+								<button class="d-btn d-btn-secondary d-btn-square btn-refreshPorts"><i class="fas fa-sync-alt"></i></button>
+							</div>
+							<div>
+								<span>Baud Rate</span>
+								<label class="slct-label" for="slct-BaudRate" click>
+									<select class="slct" id="slct-BaudRate" required="required">
+										<option value="" disabled="disabled">Select Baud Rate</option>
+										<option>14400</option>
+										<option>28800</option>
+										<option>57600</option>
+										<option selected="selected">115200</option>
+										<option>230400</option>
+										<option>460800</option>
+									</select>
+									<span class="slct-arrow"></span>
+								</label>
+							</div>
+						</div>
+						<div class="connect-box2">
+							<div>
+								<span>State</span>
+								<span class="d-btn connect-status"></span>
+							</div>
+							<div class="connect_btn">
+								<span></span>
+								<button class="d-btn d-btn-primary btn-connect"><i class="fas fa-spinner"></i></button>
+								<button class="d-btn d-btn-danger btn-disconnect btn-hide">Disconnect</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="ctrlWidget widgetInvKin">
+					<h2>Inverse Kinematic</h2>
+					<h4>Effector Position</h4>
+					<div>
+						<div class="invKin_box1">
+							<div class="invKin_subbox1">
+								<table>
+									<tr>
+										<td>X/Y Position</td>
+										<td>Z Pos.</td>
+									</tr>
+									<tr>
+										<td>
+											<div>
+												<button class="d-btn d-btn-secondary d-btn-square invKin-btnX+"><i class="fas fa-chevron-up"></i></button>
+											</div>
+											<div>
+												<button class="d-btn d-btn-secondary d-btn-square invKin-btnY-"><i class="fas fa-chevron-left"></i></button>
+												<button class="d-btn d-btn-secondary d-btn-square invKin-btnHome"><i class="fas fa-home"></i></button>
+												<button class="d-btn d-btn-secondary d-btn-square invKin-btnY+"><i class="fas fa-chevron-right"></i></button>
+											</div>
+											<div>
+												<button class="d-btn d-btn-secondary d-btn-square invKin-btnX-"><i class="fas fa-chevron-down"></i></button>
+											</div>
+										</td>
+										<td>
+											<div class="invKin_zbox">
+												<button class="d-btn d-btn-secondary d-btn-square invKin-btnZ+"><i class="fas fa-chevron-up"></i></button>
+												<button class="d-btn d-btn-secondary d-btn-square invKin-btnZ-"><i class="fas fa-chevron-down"></i></button>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="invKin_subbox2">
+								<div class="d-radio_group">
+									<span click>0.1</span>
+									<span class="d-rg-active" click>1</span>
+									<span click>10</span>
+									<span click>45</span>
+								</div>
+							</div>
+						</div>
+						<div class="invKin_box2">
+							<placeholder for="range-slider">X</placeholder>
+							<placeholder for="range-slider">Y</placeholder>
+							<placeholder for="range-slider">Z</placeholder>
+						</div>
+					</div>
+					<h4>Effector Vector</h4>
+					<div>
+						<div style="position:relative; text-align:center; padding:42px 0; background:#FFFFFF11; border-radius:0.3rem;">[Effector Vector]</div>
+					</div>
+					<button class="d-btn btn-goAll btn-InvKin" data-id="all">Go All</button>
+				</div>
+				<div class="ctrlWidget widgetConsole">
+					<h2>Console</h2>
+					<div class="console-box">
+						<div class="console-output"></div>
+						<div class="console-input" contenteditable="true"></div>
+					</div>
+				</div>
+			</div>
+			<div class="main-column2">
+				<div class="ctrlWidget widgetForKin">
+					<div class="forKin-toggle">
+						<div class="tt forKin-more forKin-hidden" tooltip="Show more" flow="left"><button class="d-btn d-btn-secondary"><i class="fas fa-plus"></i></button></div>
+						<div class="tt forKin-less" tooltip="Show less" flow="left"><button class="d-btn d-btn-secondary"><i class="fas fa-minus"></i></button></div>
+					</div>
+					<h2>Forward Kinematic</h2>
+					<div class="forKin-blockMore">
+						<placeholder for="range-slider"></placeholder>
+						<placeholder for="range-slider"></placeholder>
+						<placeholder for="range-slider"></placeholder>
+						<placeholder for="range-slider"></placeholder>
+						<placeholder for="range-slider"></placeholder>
+						<placeholder for="range-slider"></placeholder>
+					</div>
+					<div class="forKin-blockLess forKin-hidden">
+						<div style="position:relative; text-align:center; padding:42px 0; background:#FFFFFF11; border-radius:0.3rem;">[Smaller ForKin Block]</div>
+					</div>
+					<button class="d-btn btn-goAll btn-ForKin" data-id="all">Go All</button>
+				</div>
+				<div class="ctrlWidget widgetGripper">
+					<h2>Gripper</h2>
+					<table class="rs-table">
+						<tr>
+							<td>
+								Gripper<br>
+								<span class="rs-output rs-output-gripper"></span>
+							</td>
+							<td>
+								<div class="range-slider">
+									<input id="rs-gripper" class="rs-onlyPos" type="range" min="0" max="100" step="0.1" value="0"/>
+									<div class="range-values">
+										<span class="range-min" data-value="0%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-subsubstep" data-value="12.5%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-substep" data-value="25%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-subsubstep" data-value="37.5%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-step" data-value="50%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-subsubstep" data-value="62.5%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-substep" data-value="75%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-subsubstep" data-value="87.5%"></span>
+										<span class="range-ministep" data-value=""></span>
+										<span class="range-max" data-value="100%"></span>
+									</div>
+									<div class="range-buttons">
+										<button class="d-btn d-btn-secondary rs-hideG1">-25%</button>
+										<button class="d-btn d-btn-secondary rs-hideG3">-10%</button>
+										<button class="d-btn d-btn-secondary rs-hideG2">-5%</button>
+										<button class="d-btn d-btn-secondary">-1%</button>
+										<button class="d-btn d-btn-secondary rs-hideG4">-0.1%</button>
+										<button class="d-btn d-btn-secondary d-btn-square rs-home rs-hideG5"><i class="fas fa-home"></i></button>
+										<button class="d-btn d-btn-secondary rs-hideG4">+0.1%</button>
+										<button class="d-btn d-btn-secondary">+1%</button>
+										<button class="d-btn d-btn-secondary rs-hideG2">+5%</button>
+										<button class="d-btn d-btn-secondary rs-hideG3">+10%</button>
+										<button class="d-btn d-btn-secondary rs-hideG1">+25%</button>
+									</div>
+								</div>
+							</td>
+							<td>
+								<button class="d-btn btn-gripper" click>Go</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="main main-Console">
+			<h2>Console</h2>
+			<div class="console-box">
+				<div class="console-output">
+					<!--
+					<div data-source="Input">This is an user input</div>
+					<div data-source="Input">And this is a very very very very very loooooooooooooong test that will span over two lines, so that I can see how that is being handled. Well, we should be there soon...... Any minute now.... Sooooooon..... Aaaaaand that looks like it should be enough</div>
+					<div data-source="Error">This is an error!</div>
+					<div data-source="Warning">This is a warning BTW</div>
+					<div data-source="Success">This is a success message</div>
+					<div class="console-help"></div>
+					<div data-source="Input">The console-help box above is just a test</div>
+					-->
+				</div>
+				<div class="console-input" contenteditable="true"></div>
+			</div>
+		</div>
+		<div class="main main-Processes">
+			Processes
+		</div>
+		<div class="main main-Analytics">
+			
+			<div>
+				<h2>Demo Graph 1</h2>
+				<canvas id="myChart1" width="600" height="400"></canvas>
+			</div>
+			
+			<div>
+				<h2>Demo Graph 2</h2>
+				<canvas id="myChart2" width="600" height="400"></canvas>
+			</div>
+			
+			<div>
+				<h2>Demo Graph 3</h2>
+				<canvas id="myChart3" width="600" height="400"></canvas>
+			</div>
+			
+		</div>
+		<div class="main main-Settings">
+			
+			<div>
+				<h1>Design Tests:</h1>
+				<button class="d-btn">Button</button>
+				<button class="d-btn d-btn-primary">Primary</button>
+				<button class="d-btn d-btn-secondary">Secondary</button>
+				<button class="d-btn d-btn-danger">Danger</button>
+				<button class="d-btn d-btn-warning">Warning</button>
+				<button class="d-btn d-btn-success">Success</button>
+			</div>
+				
+		</div>
+		<div class="main_shadows"></div>
+	</div>
+
+</div>
+
+<div id="popup-box">
+    <div id="popup-background"></div>
+
+    <div class="popup d-p2" id="popup-options">
+        <h3>Settings</h3>
+        <span class="settings-sectionHeader" data-sectionTitle="General Settings"></span>
+        <div class="settings-dev">
+            <button class="d-btn d-btn-warning btn_reload">Reload</button>
+            <button class="d-btn d-btn-danger btn_restart">Full Restart</button>
+        </div>
+
+        <div style="border:2px solid #FFF; border-radius:4px; text-align:center; opacity:0.25; padding:50px; margin:20px 0;">
+            Here is room<br>for your settings
+        </div>
+
+        <div class="popup-buttons">
+            <button type="submit" class="d-btn d-btn-success btn_save btn_restart">Save and Restart</button>
+            <button type="submit" class="d-btn d-btn-success btn_save">Save</button>
+            <button type="submit" class="d-btn d-btn-secondary btn_close">Close</button>
+        </div>
+    </div>
+
+</div> <!-- End of #popup-box -->
+
+
+</body>
+
+</html>
