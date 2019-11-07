@@ -35,7 +35,11 @@
         "Control Panel"
     ],
     "repository": "none",
-    "author": "Robin Garbe",
+    "author": {
+        "name": "Robin Garbe",
+        "email": "mail@robin-garbe.de",
+        "url": "https://robin-garbe.de"
+    },
     "license": "MIT",
     "dependencies": {
         "appdata-path": "^1.0.0",
