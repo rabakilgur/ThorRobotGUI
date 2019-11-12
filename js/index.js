@@ -456,7 +456,7 @@ $(document).ready(() => {
 		set_start("gripper",15.2);
 		*/
 		
-		// $('menuitem[data-menu="Console"]').click();
+		$('menuitem[data-menu="Testing"]').click();
 	}, 100);
 	
 });

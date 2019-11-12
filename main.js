@@ -40,8 +40,7 @@ const electron_reload = require('electron-reload')(__dirname, { electron: path.j
 global.shared = { // Define shared variables/objects:
     devmode: devmode,
     package: package,
-    app_path: app_path,
-    blub: "hell"
+    app_path: app_path
 };
 
 function changeShared(obj, value) {
@@ -65,7 +64,7 @@ let mainWindow = null; // global reference of the window object
 process.show_error = function (text, type) {
     if ( type == undefined ) type = "error";
     function check_mainWindow(text, type) {
-        if ( !(mainWindow === null)  ){
+        if ( mainWindow !== null ){
             try {
                 mainWindow.webContents.executeJavaScript(`
                     function check_errorList(text, type) {
@@ -85,10 +84,10 @@ process.show_error = function (text, type) {
                 sprint("Can't show error [" + err + "]","yellow","black","black","yellow");
             }
         } else {
-            setTimeout(() => { check_mainWindow(text, type) }, 300);
+            setTimeout(() => { check_mainWindow(text, type); }, 300);
         }
     }
-    check_mainWindow(text, type)
+    check_mainWindow(text, type);
 };
 show_error = process.show_error;
 
@@ -97,7 +96,7 @@ process.setStatus = function (status, color, elem, state) {
     if ( elem == undefined )  elem  = "app-status";
     if ( state == undefined ) state = "";
     function check_mainWindow(status, color, elem, state) {
-        if ( !(mainWindow === null) ){
+        if ( mainWindow !== null ){
             mainWindow.webContents.executeJavaScript(`
                 function check_status(status, color, elem, state) {
                     if ( $("." + elem).length ) {
@@ -113,16 +112,16 @@ process.setStatus = function (status, color, elem, state) {
                 check_status("${status}", "${color}", "${elem}", "${state}");
             `);
         } else {
-            setTimeout(() => { check_mainWindow(status, color, elem, state) }, 300);
+            setTimeout(() => { check_mainWindow(status, color, elem, state); }, 300);
         }
     }
-    check_mainWindow(status, color, elem, state)
-}
+    check_mainWindow(status, color, elem, state);
+};
 setStatus = process.setStatus;
 
 process.activity_indicator = function (indicator) {
     function check_mainWindow(indicator) {
-        if ( !(mainWindow === null)  ){
+        if ( mainWindow !== null ){
             try {
                 mainWindow.webContents.executeJavaScript(`
                     function check_indicator(indicator) {
@@ -138,10 +137,10 @@ process.activity_indicator = function (indicator) {
                 sprint("Can't show activity [" + err + "]","yellow","black","black","yellow");
             }
         } else {
-            setTimeout(() => { check_mainWindow(indicator) }, 300);
+            setTimeout(() => { check_mainWindow(indicator); }, 300);
         }
     }
-    check_mainWindow(indicator)
+    check_mainWindow(indicator);
 };
 
 function createWindow () {
@@ -170,7 +169,7 @@ function createWindow () {
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true
-    }))
+    }));
 
 
     if (devmode) mainWindow.webContents.openDevTools(); // Open the DevTools
@@ -179,25 +178,22 @@ function createWindow () {
 
     mainWindow.on('closed', function () { // Emitted when this window is closed
         mainWindow = null;
-    })
+    });
 }
 
 app.on('ready', () => {
     createWindow();
     sprint("Window created","green","black","black","byellow");
-
-    
-
-})
+});
 
 // Some stuff for OS X:
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
         app.quit();
     }
-})
+});
 app.on('activate', function () {
     if (mainWindow === null) {
         createWindow();
     }
-})
+});
