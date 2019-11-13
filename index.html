@@ -349,18 +349,36 @@
 			Processes
 		</div>
 		<div class="main main-Testing">
-			<div>
-				<div style="display: inline-block">
-					<h3 style="text-align: center; margin: 0.5rem 0;">Art. 1</h3>
-					<span class="btngroup">
-						<button class="d-btn d-btn-secondary" id="testing-art1-minus10">-10°</button>
-						<button class="d-btn d-btn-secondary" id="testing-art1-plus10">+10°</button>
-					</span>
+			<div class="testing-wrapper">
+				<div class="testing-controlbox">
+					<placeholder for="testing-control" data-articulation="1"></placeholder>
+					<placeholder for="testing-control" data-articulation="2"></placeholder>
+					<placeholder for="testing-control" data-articulation="3"></placeholder>
+					<placeholder for="testing-control" data-articulation="4"></placeholder>
+					<placeholder for="testing-control" data-articulation="5"></placeholder>
+					<placeholder for="testing-control" data-articulation="6"></placeholder>
+					<div class="testing-control">
+						<h3>Gripper</h3>
+						<span class="btngroup">
+							<button class="d-btn d-btn-secondary testing-btn-gripperOpen">Open</button>
+							<button class="d-btn d-btn-secondary testing-btn-gripperClose">Close</button>
+						</span>
+					</div>
 				</div>
+				
 				<h2>Movements</h2>
-				<button class="d-btn">Straight</button>
-				<button class="d-btn">Move everything</button>
-				<button class="d-btn">Grip</button>
+				<button class="d-btn testing-btn-straight">Straight</button>
+				<button class="d-btn testing-btn-move">Move everything</button>
+				<button class="d-btn testing-btn-grip">Grip</button>
+			</div>
+			<div class="testing-console">
+				<div class="ctrlWidget widgetConsole">
+					<h2>Console</h2>
+					<div class="console-box">
+						<div class="console-output"></div>
+						<div class="console-input" contenteditable="true"></div>
+					</div>
+				</div>
 			</div>
 			
 		</div>

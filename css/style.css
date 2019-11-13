@@ -593,6 +593,38 @@ menuitem > .menu-tooltip:hover::after {
 	user-select: text;
 }
 
+/* ----------  Testing:  --------- */
+.testing-wrapper {
+	zoom: 1.7;
+	width: calc(100% - 400px);
+}
+.testing-console {
+
+}
+.main-Testing.main-active {
+	display: block;
+	padding: 0 8px;
+}
+.testing-controlbox {
+}
+.testing-control {
+	display: inline-block;
+}
+.testing-control > h3 {
+	text-align: center;
+	margin: 0.5rem 0;
+}
+.testing-console {
+	position: absolute;
+    top: 0;
+    right: 0;
+    width: 708px;
+    height: 100%;
+}
+.testing-console > .widgetConsole {
+    height: 100%;
+}
+
 /* ---------  Analytics:  -------- */
 .main-Analytics {
 	flex-wrap: wrap;
@@ -605,21 +637,6 @@ menuitem > .menu-tooltip:hover::after {
 }
 .main-Analytics > div > h2 {
 	margin-top: 0;
-}
-
-
-
-.btngroup {
-	font-size: 0;
-}
-.btngroup > .d-btn:not(:last-child) {
-	border-radius: 0.3rem 0 0 0.3rem;
-    padding-right: 0.6rem;
-    border-right: 1px solid #666;
-}
-.btngroup > .d-btn:last-child {
-	border-radius: 0 0.3rem 0.3rem 0;
-    padding-left: 0.6rem;
 }
 
 

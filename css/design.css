@@ -185,7 +185,19 @@ body {
     padding: 0.428rem 0;
     width: 2.2725rem;
 }
-
+/* Button Group: */
+.btngroup {
+	font-size: 0;
+}
+.btngroup > .d-btn:not(:last-child) {
+	border-radius: 0.3rem 0 0 0.3rem;
+    padding-right: 0.6rem;
+    border-right: 1px solid #666;
+}
+.btngroup > .d-btn:last-child {
+	border-radius: 0 0.3rem 0.3rem 0;
+    padding-left: 0.6rem;
+}
 
 /* --------------------  HR:  -------------------- */
 hr {

@@ -137,6 +137,72 @@ function set_start(slider_nbr, new_start = 0) {
 $(document).ready(() => {
 	if (settings.verboseOutput) cnsl(`Starting...`, "System");
 
+	/* For the Testing-Controls: */
+	$('placeholder[for="testing-control"]').each(function(counter) {
+		let nbr = $(this).attr("data-articulation");
+		$(this).replaceWith(`
+			<div class="testing-control">
+				<h3>Art. ${nbr}</h3>
+				<span class="btngroup">
+					<button class="d-btn d-btn-secondary testing-btn-minus10" data-articulation="${nbr}">-10°</button>
+					<button class="d-btn d-btn-secondary testing-btn-plus10" data-articulation="${nbr}">+10°</button>
+				</span>
+			</div>
+		`);
+	});
+	function send_to_robot(message) {
+		try {
+			robot.send(message);
+		} catch(err) {
+			console.error("Error while sending: \n", err);
+			cnsl(`Error while sending message: <i>${err.message}</i>`, "Error");
+		}
+	}
+	$(".testing-btn-minus10").on("click", function() {
+		let art = $(this).attr("data-articulation");
+		new_val = Math.max(-180, current_artic["a" + art] - 10);
+		let new_artic = current_artic;
+		new_artic["a" + art] = new_val;
+		cnsl(`Moving <i>Articulation ${art}</i> by -10°`, "System");
+		let typeOfMovement = "G1";  // <-- HARDCODED FOR NOW! (Or should it stay?)
+		let feedRate = 500;  // <-- HARDCODED FOR NOW!
+		send_to_robot(`${typeOfMovement} ${translateForThor(new_artic)} F${Math.round(feedRate, 1)}`);
+	});
+	$(".testing-btn-plus10").on("click", function() {
+		let art = $(this).attr("data-articulation");
+		new_val = Math.min(180, current_artic["a" + art] + 10);
+		let new_artic = current_artic;
+		new_artic["a" + art] = new_val;
+		cnsl(`Moving <i>Articulation ${art}</i> by +10°`, "System");
+		let typeOfMovement = "G1";  // <-- HARDCODED FOR NOW! (Or should it stay?)
+		let feedRate = 500;  // <-- HARDCODED FOR NOW!
+		send_to_robot(`${typeOfMovement} ${translateForThor(new_artic)} F${Math.round(feedRate, 1)}`);
+	});
+	$(".testing-btn-gripperOpen").on("click", function() {
+		cnsl(`Opening the Gripper`, "System");
+		send_to_robot(`M3 S0`);
+	});
+	$(".testing-btn-gripperClose").on("click", function() {
+		cnsl(`Closing the Gripper`, "System");
+		send_to_robot(`M3 S800`);
+	});
+	$(".testing-btn-straight").on("click", function() {
+		cnsl(`Going to "Straight" position`, "System");
+		send_to_robot(`G1 A0 B0 C0 D0 X0 Y0 Z0 F500`);
+	});
+	$(".testing-btn-move").on("click", function() {
+		cnsl(`Moving <b>all</b> articulations`, "System");
+		send_to_robot(`G1 A8.93 B42.11 C42.11 D85.79 X3.33 Y18.09 Z11.94 F500`);
+	});
+	$(".testing-btn-grip").on("click", function() {
+		cnsl(`Running the demo movement`, "System");
+		send_to_robot(`M3 S0`);
+		send_to_robot(`G1 A8.93 B42.11 C42.11 D85.79 X7.5 Y4.23 Z-4.23 F500`);
+		send_to_robot(`M3 S800`);
+		send_to_robot(`G1 A1.79 B31.58 C31.58 D56.84 X7.5 Y1.15 Z-1.15 F500`);
+		send_to_robot(`M3 S0`);
+	});
+
 	/* For the Range-Sliders: */
 	$('placeholder[for="range-slider"]').each(function(counter) {
 		let item_counter = counter + 1 - 3;  // -3 to compensate for the XYZ-Position sliders
