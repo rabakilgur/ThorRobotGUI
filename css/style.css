@@ -844,6 +844,26 @@ menuitem > .menu-tooltip:hover::after {
 	content: "°";
 }
 
+.range-slider {
+	position: relative;
+}
+
+.widgetGripper .range-slider::before {
+	Content:"Open";
+	position: absolute;
+	top: -10px;
+	font_size: 80%;
+	color: #ccc;
+}
+
+.widgetGripper .range-slider::after {
+	Content:"Close";
+	position: absolute;
+	top: -10px;
+	right: 0;
+	font_size: 80%;
+	color: #ccc;
+}
 
 /* ----------------------------- */
 /* ------  Titlebar Style: ----- */
