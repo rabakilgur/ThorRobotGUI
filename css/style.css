@@ -598,14 +598,9 @@ menuitem > .menu-tooltip:hover::after {
 	zoom: 1.7;
 	width: calc(100% - 400px);
 }
-.testing-console {
-
-}
 .main-Testing.main-active {
 	display: block;
 	padding: 0 8px;
-}
-.testing-controlbox {
 }
 .testing-control {
 	display: inline-block;
