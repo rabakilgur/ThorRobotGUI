@@ -201,6 +201,7 @@ $(document).ready(() => {
 		send_to_robot(`M3 S800`);
 		send_to_robot(`G1 A1.79 B31.58 C31.58 D56.84 X7.5 Y1.15 Z-1.15 F500`);
 		send_to_robot(`M3 S0`);
+		send_to_robot(`G1 A0 B0 C0 D0 X0 Y0 Z0 F500`);
 	});
 
 	/* For the Range-Sliders: */
