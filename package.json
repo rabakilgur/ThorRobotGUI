@@ -43,7 +43,7 @@
     "license": "MIT",
     "dependencies": {
         "appdata-path": "^1.0.0",
-        "axios": "^0.19.0",
+        "axios": "^0.21.1",
         "child_process": "^1.0.2",
         "custom-event": "^1.0.1",
         "electron-reload": "^1.4.0",
